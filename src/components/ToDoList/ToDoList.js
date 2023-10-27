@@ -1,6 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
 import "./ToDoList.css";
+import { toggleTodo } from "../../redux/actions/todoActions";
 
-function ToDoList({ todos, onToggle }) {
+function ToDoList() {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+  // This is same as above
+  // const todos = store.getState().todos;
   return (
     <div className="container">
       <ul>
@@ -13,7 +19,7 @@ function ToDoList({ todos, onToggle }) {
             <button
               className="btn btn-warning"
               onClick={() => {
-                onToggle(index);
+                dispatch(toggleTodo(index));
               }}
             >
               Toggle
