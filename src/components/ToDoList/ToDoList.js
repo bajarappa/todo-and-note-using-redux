@@ -3,7 +3,8 @@ import "./ToDoList.css";
 import { toggleTodo } from "../../redux/actions/todoActions";
 
 function ToDoList() {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todoReducer.todos);
+  console.log(todos);
   const dispatch = useDispatch();
   // This is same as above
   // const todos = store.getState().todos;
@@ -11,7 +12,7 @@ function ToDoList() {
     <div className="container">
       <ul>
         {todos.map((todo, index) => (
-          <li key={todo.id}>
+          <li key={todo.i}>
             <span className="content">{todo.text}</span>
             <span className={todo.completed ? "completed" : "pending"}>
               {todo.completed ? "Completed" : "Pending"}
