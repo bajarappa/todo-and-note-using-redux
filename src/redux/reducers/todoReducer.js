@@ -12,6 +12,9 @@ const todoSlice = createSlice({
   name: "todo",
   initialState: initialState,
   reducers: {
+    setInitialState: (state, action) => {
+      state.todos = [...action.payload];
+    },
     // this is add action
     add: (state, action) => {
       // payload can be anything string, bool, array, index etc.,
