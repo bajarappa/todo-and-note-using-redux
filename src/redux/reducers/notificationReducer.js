@@ -24,25 +24,25 @@ export const notificationSlice = createSlice({
   //     },
   //   },
 
-  //   // Using add case
-  //   extraReducers: (builder) => {
-  //     builder.addCase(todoActions.add, (state, action) => {
-  //       state.message = "Todo as been created";
-  //     });
-  //     builder.addCase(noteActions.add, (state, action) => {
-  //       state.message = "Note as been created";
-  //     });
-  //   },
-
-  extraReducers: {
-    // map objects:[key]:value
-    [todoActions.add]: (state, action) => {
+  // Using add case
+  extraReducers: (builder) => {
+    builder.addCase(todoActions.add, (state, action) => {
       state.message = "Todo as been created";
-    },
-    [noteActions.add]: (state, action) => {
+    });
+    builder.addCase(noteActions.add, (state, action) => {
       state.message = "Note as been created";
-    },
+    });
   },
+
+  // extraReducers: {
+  //   // map objects:[key]:value
+  //   [todoActions.add]: (state, action) => {
+  //     state.message = "Todo as been created";
+  //   },
+  //   [noteActions.add]: (state, action) => {
+  //     state.message = "Note as been created";
+  //   },
+  // },
 });
 
 export const notificationReducer = notificationSlice.reducer;

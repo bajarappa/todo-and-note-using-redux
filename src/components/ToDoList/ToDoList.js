@@ -13,7 +13,7 @@ function ToDoList() {
     <div className="container">
       <ul>
         {todos.map((todo, index) => (
-          <li key={todo.i}>
+          <li key={index}>
             <span className="content">{todo.text}</span>
             <span className={todo.completed ? "completed" : "pending"}>
               {todo.completed ? "Completed" : "Pending"}
