@@ -1,20 +1,34 @@
 // import { ADD_TODO, TOGGLE_TODO } from "../actions/todoActions";
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-  todos: [{ text: "Office at 9Am", completed: true }, { text: "Gym at 6Pm" }],
+  todos: [
+    // { text: "Office at 9Am", completed: true }, { text: "Gym at 6Pm" }
+  ],
 };
 
-// Creating reducer using redux toolkit
+// Creating async function to call api
+export const getInitialStateAsync = createAsyncThunk(
+  "todo/getInitialState",
+  // async (arg, thunkAPI) => {
+  //   const result = await axios.get("http://localhost:4100/api/todos");
+  //   console.log(result.data);
+  //   // dispatch(todoActions.setInitialState(result.data));
+  //   thunkAPI.dispatch(todoActions.setInitialState(result.data));
+  // }
+  () => axios.get("http://localhost:4100/api/todos")
+);
 
+// Creating reducer using redux toolkit
 const todoSlice = createSlice({
   name: "todo",
   initialState: initialState,
   reducers: {
-    setInitialState: (state, action) => {
-      state.todos = [...action.payload];
-    },
+    // setInitialState: (state, action) => {
+    //   state.todos = [...action.payload];
+    // },
     // this is add action
     add: (state, action) => {
       // payload can be anything string, bool, array, index etc.,
@@ -28,6 +42,11 @@ const todoSlice = createSlice({
         return todo;
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getInitialStateAsync.fulfilled(), (state, action) => {
+      state.todos = [...action.payload.data];
+    });
   },
 });
 

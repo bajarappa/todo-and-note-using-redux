@@ -4,6 +4,7 @@ import { noteReducer } from "./reducers/noteReducer";
 import { configureStore } from "@reduxjs/toolkit";
 import { notificationReducer } from "./reducers/notificationReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
 // import { combineReducers } from "redux";
 // const result = combineReducers({
 //   todoReducer,
@@ -17,5 +18,5 @@ export const store = configureStore({
     noteReducer,
     notificationReducer,
   },
-  middleware: [loggerMiddleware],
+  middleware: [...getDefaultMiddleware(), loggerMiddleware],
 });

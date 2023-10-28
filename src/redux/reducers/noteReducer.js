@@ -4,8 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   notes: [
-    { text: "jdfnjsfduherierbierbier", createdOn: new Date() },
-    { text: "dfnkjsdfneiwba", createdOn: new Date() },
+    { text: "jdfnjsfduherierbierbier", createdOn: new Date().toString() },
+    { text: "dfnkjsdfneiwba", createdOn: new Date().toString() },
   ],
 };
 
@@ -15,7 +15,10 @@ const noteSlice = createSlice({
   initialState: initialState,
   reducers: {
     add: (state, action) => {
-      state.notes.push({ text: action.payload, createdOn: new Date() });
+      state.notes.push({
+        text: action.payload,
+        createdOn: new Date().toString(),
+      });
     },
     delete: (state, action) => {
       state.notes.splice(action.payload, 1);
